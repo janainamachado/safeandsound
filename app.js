@@ -6,6 +6,7 @@ var logger = require("morgan");
 var cors = require("cors");
 
 var reviewsRouter = require("./routes/reviews");
+var venuesRouter = require("./routes/venues");
 
 var app = express();
 
@@ -19,6 +20,7 @@ app.use(cookieParser());
 app.use(express.static(path.join(__dirname, "client/build")));
 
 app.use("/reviews", reviewsRouter);
+app.use("/venues", venuesRouter);
 
 // Anything that doesn't match the above, send back index.html
 app.get("*", (req, res) => {
