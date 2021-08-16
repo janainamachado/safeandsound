@@ -3,7 +3,16 @@ var router = express.Router();
 const db = require("../model/helper");
 
 
-// INSERT a new review into the DB
+
+router.get("/", async function (req, res, next) {
+    let sql = `SELECT DATE_FORMAT(r.date, '%Y-%m-%d'), r.incident, r.username, v.venuename, v.address
+    FROM reviews r
+    INNER JOIN venues v ON r.venue_id=v.id`;
+    let result = await db(sql)
+    // 3. Retornar um response para o frontend
+    res.status(200).send(result.data); 
+
+})
 router.post("/", async function (req, res, next) {
     // pesquisa a venue
     //venue existe? -> adicione review a essa venue existente
@@ -26,13 +35,18 @@ router.post("/", async function (req, res, next) {
     sql = `INSERT INTO reviews (venue_id, date, incident, username)
     VALUES ("${venue_id}","${date}", "${incident}", "${username}")
     `;
+    //backedn não estava retornando minhas reviews pq eu não estava
+    //fazendo o select dele!!!!!!!!!!!!!!!!!
     await db(sql);
+    let lastInsertedReviewSQL = `SELECT DATE_FORMAT(r.date, '%Y-%m-%d'), r.incident, r.username, v.venuename, v.address
+    FROM reviews r
+    INNER JOIN venues v ON r.venue_id=v.id ORDER BY r.id DESC`;
+    let result = await db(lastInsertedReviewSQL)
+    let review = result.data[0];
     // 3. Retornar um response para o frontend
-    res.status(201).send(); 
+    res.status(201).send(review); 
 
 });
-
-// DELETE a review from the DB
 
 
 module.exports = router;
