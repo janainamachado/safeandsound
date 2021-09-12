@@ -9,3 +9,4 @@ CREATE TABLE venues (id INT NOT NULL AUTO_INCREMENT,
 address TEXT, 
 name VARCHAR(40), 
 PRIMARY KEY (id));
+

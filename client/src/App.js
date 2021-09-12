@@ -1,7 +1,6 @@
 import React, { useEffect, useState } from "react"
-import FormReview from './components/FormReview' 
-import SearchVenue from './components/SearchVenue' 
-import ReviewsList from './components/ReviewsList' 
+import Routes from './components/Routes';
+import Navbar from './components/NavBar';
 import './App.css';
 
 function App() {
@@ -14,16 +13,14 @@ function App() {
 
   return (
     <div className="App">
-      <SearchVenue inputValues={inputValues}
-      setInputValues={setInputValues} />
-      <FormReview inputValues={inputValues}
-       setInputValues={setInputValues}
-       initialInputValues={initialInputValues} 
-       setReviews={setReviews}
-       reviews={reviews}/>
-      <ReviewsList 
+      <Routes inputValues={inputValues}
+      setInputValues={setInputValues}
+      initialInputValues={initialInputValues} 
       setReviews={setReviews}
-      reviews={reviews}/>
+      reviews={reviews} />
+      <Navbar 
+       />
+      
     </div>
   );
 }

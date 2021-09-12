@@ -1,4 +1,4 @@
-import React from "react"
+import React from 'react'
 import '../App.css'
 
 function FormReview(props) {
@@ -62,7 +62,7 @@ function FormReview(props) {
                     <label className="form-font form-label">Your name:</label>
                     <input onChange={handleChange} name="username" type="text" placeholder="Optional"></input>
                 </div>
-                <button type="submit" className="form-label">Send</button>
+                <button w className="form-label">Send</button>
             </form>
         </div>
     )
